@@ -13,7 +13,7 @@ export interface MusbandsAdminHeaderProps {
 export class MusbandsAdminHeader extends React.Component<MusbandsAdminHeaderProps, {}> {
 	render() {
 		return (
-			<div>
+			<div className="flex">
 				<MusbandsAdminHeaderLogo />
 				<MusbandsAdminHeaderContent />
 			</div>

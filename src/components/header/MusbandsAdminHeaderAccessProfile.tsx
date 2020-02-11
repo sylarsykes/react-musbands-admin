@@ -11,40 +11,57 @@ import {
   SizeProp
 } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { faUserCog, faCog } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faUserCog);
+library.add(faUserCog, faCog);
 
 // Define IconProp
 const userCogLookup: IconLookup = { prefix: 'fas', iconName: 'user-cog' }
 const userCogIconDefinition: IconDefinition = findIconDefinition(userCogLookup)
+const cogLookup: IconLookup = { prefix: 'fas', iconName: 'cog' }
+const cogIconDefinition: IconDefinition = findIconDefinition(cogLookup)
 
 // Component props
 export interface MusbandsAdminHeaderAccessProfileProps {
-	icon: IconProp,
-	classNameContainer?: string,
-	classNameIcon?: string,
-	size?: SizeProp
+    iconUser: IconProp,
+    sizeIconUser?: SizeProp
+    iconGear: IconProp,
+    sizeIconGear?: SizeProp
 }
 
 // Functional component logo for header app.
 export class MusbandsAdminHeaderAccessProfile extends React.Component<MusbandsAdminHeaderAccessProfileProps, {}> {
 	render() {
-		const { icon, classNameContainer, classNameIcon, size } = this.props;
+        const {
+            iconUser,
+            sizeIconUser,
+            iconGear,
+            sizeIconGear
+        } = this.props;
 		return (
-			<div className={ classNameContainer }>
-				<a href="https://github.com/sylarsykes/java-musbands-admin" className="App-link">
-					<FontAwesomeIcon className={ classNameIcon } icon={ icon } size={ size } />
-				</a>
+            <div className="w-1/4 bg-gray-500 h-12">
+                <div className="flex mb-4">
+                    <div className="w-1/2 bg-gray-400 h-12 items-center">
+                        <a className="items-center" href="https://github.com/sylarsykes/java-musbands-admin">
+                            <FontAwesomeIcon icon={ iconUser } size={ sizeIconUser } />
+                        </a>
+                    </div>
+                    <div className="bg-black mt-0 mx-4 h-12 w-1"></div>
+                    <div className="w-1/2 bg-gray-400 h-12 items-center">
+                        <a className="items-center" href="https://github.com/sylarsykes/java-musbands-admin">
+                            <FontAwesomeIcon icon={ iconGear } size={ sizeIconGear } />
+                        </a>
+                    </div>
+                </div>
 			</div>
 		);
 	}
 	// Assign default values in component props
 	static defaultProps = {
-		icon: userCogIconDefinition,
-		classNameContainer: "App-link",
-		classNameIcon: "",
-		size: "2x"
+        iconUser: userCogIconDefinition,
+        sizeIconUser: "2x",
+        iconGear: cogIconDefinition,
+        sizeIconGear: "2x"
 	};
 }
 

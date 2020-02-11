@@ -5,22 +5,21 @@ import { MusbandsAdminHeaderAccessProfile } from './MusbandsAdminHeaderAccessPro
 
 // Component props
 export interface MusbandsAdminHeaderContentProps {
-  classNameContainer?: string
+
 }
 
 // Functional component for header app.
 export class MusbandsAdminHeaderContent extends React.Component<MusbandsAdminHeaderContentProps, {}> {
 	render() {
-    const { classNameContainer } = this.props;
 		return (
-            <div className={ classNameContainer } >
-              <MusbandsAdminHeaderAccessProfile />
-            </div>
+      <div className="w-3/4 bg-gray-500 h-12" >
+        <div className="flex">
+          <div className="w-3/4 bg-gray-500 h-12"></div>
+          <MusbandsAdminHeaderAccessProfile />
+        </div>
+      </div>
 		);
   }
-  static defaultProps = {
-		classNameContainer: "AppHeader__content"
-	};
 }
 
 export default MusbandsAdminHeaderContent;
