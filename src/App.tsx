@@ -1,20 +1,21 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
 
 // My components
-import { MusbandsAdminHeader } from './components/header/MusbandsAdminHeader';
+import { MusbandsAdminHeader } from './components/header/MusbandsAdminHeader'
 
 export class App extends React.Component {
   render() {
     return (
-		<div className="App">
-		  <header className="App-header">
-			<MusbandsAdminHeader />
-		  </header>
-		  <h1>Musbands Admin, administration web page for manage master tables for <a href="https://github.com/sylarsykes/java-musbands-admin">Musbands Admin API </a> </h1>
-		</div>
-	);
+      <div className="App">
+        <header className="sticky top-0 bg-white">
+          <nav className="flex items-center justify-between flex-wrap bg-red-700 p-6">
+            <MusbandsAdminHeader />
+          </nav>
+        </header>
+        <h1>Musbands Admin, administration web page for manage master tables for <a href="https://github.com/sylarsykes/java-musbands-admin">Musbands Admin API </a> </h1>
+      </div>
+    )
   }
 }
 
-export default App;
+export default App
