@@ -3,10 +3,10 @@ const HtmlWebPackPlugin = require('html-webpack-plugin'),
   UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
   path = require('path')
 
-const environment = process.env.NODE_ENV || 'development'
+const environment = process.env.NODE_ENV || 'production'
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'inline-source-map',
   entry:  [path.join(path.join(__dirname, 'src'), 'index.tsx')],
   output: {
