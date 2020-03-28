@@ -27,7 +27,7 @@ export interface MusbandsAdminHeaderLogoProps {
 
 // Functional component logo for header app.
 export class MusbandsAdminHeaderLogo extends React.Component<MusbandsAdminHeaderLogoProps, {}> {
-  render() {
+  render(): React.ReactNode {
     // Destucturing props in constants
     const { icon, size } = this.props
     return (

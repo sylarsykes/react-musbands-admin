@@ -8,9 +8,7 @@ export class App extends React.Component {
     return (
       <div className="App">
         <header className="sticky top-0 bg-white">
-          <nav className="flex items-center justify-between flex-wrap bg-red-700 p-6">
-            <MusbandsAdminHeader />
-          </nav>
+          <MusbandsAdminHeader />
         </header>
         <h1>Musbands Admin, administration web page for manage master tables for <a href="https://github.com/sylarsykes/java-musbands-admin">Musbands Admin API </a> </h1>
       </div>
