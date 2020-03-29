@@ -28,14 +28,14 @@ export interface MusbandsAdminHeaderLogoProps {
 // Functional component logo for header app.
 export class MusbandsAdminHeaderLogo extends React.Component<MusbandsAdminHeaderLogoProps, {}> {
   render(): React.ReactNode {
-    // Destucturing props in constants
+    // Destructuring props in constants
     const { icon, size } = this.props
     return (
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <a className="justify-center items-center" href="https://github.com/sylarsykes/java-musbands-admin">
           <FontAwesomeIcon icon={ icon } size={ size } />
         </a>
-        <span className="font-semibold text-xl tracking-tight">Musbands Admin</span>
+        <span className="font-semibold text-xl tracking-tight"> Musbands Admin</span>
       </div>
     )
   }
