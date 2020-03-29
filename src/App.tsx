@@ -2,15 +2,19 @@ import React from 'react'
 
 // My components
 import { MusbandsAdminHeader } from './components/header/MusbandsAdminHeader'
+import { MusbandsAdminMenu } from './components/body/MusbandsAdminMenu'
+import { MusbandsAdminFrontPage } from './components/body/MusbandsAdminFrontPage'
 
 export class App extends React.Component {
-  render() {
+  render(): JSX.Element {
     return (
       <div className="App">
-        <header className="sticky top-0 bg-white">
+        <header className="sticky top-0 musbands-css-header-background">
           <MusbandsAdminHeader />
         </header>
-        <h1>Musbands Admin, administration web page for manage master tables for <a href="https://github.com/sylarsykes/java-musbands-admin">Musbands Admin API </a> </h1>
+        <hr />
+        <MusbandsAdminMenu />
+        <MusbandsAdminFrontPage />
       </div>
     )
   }
