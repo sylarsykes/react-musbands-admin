@@ -13,6 +13,10 @@ export function MusbandsAdminMenu(): JSX.Element {
           className="inline-block border-black border-t border-l border-r rounded-t py-2 px-4 text-black-500 hover:text-black-800 font-semibold">
             FrontPage
         </Link>
+        <Link to="/function-members"
+          className="inline-block border-black border-t border-l border-r rounded-t py-2 px-4 text-black-500 hover:text-black-800 font-semibold">
+            Function Members
+        </Link>
       </ul>
     </Router>
   )

@@ -7,7 +7,18 @@
     "module": "commonjs",
     "target": "es5",
     "jsx": "react",
+    /*
+       Enables emit interoperability between CommonJS and ES Modules
+       via creation of namespace objects for all imports.
+       Implies 'allowSyntheticDefaultImports'.
+    */
     "esModuleInterop": true,
+    /*
+      Specify the JSX factory function to use
+      when targeting 'react' JSX emit,
+      e.g. 'React.createElement' or 'h'.
+      "jsxFactory": "createElement",
+    */
     "resolveJsonModule": true,
     "skipLibCheck" : true
   },

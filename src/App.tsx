@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 // My components
 import { MusbandsAdminHeader } from './components/header/MusbandsAdminHeader'
 import { MusbandsAdminMenu } from './components/body/MusbandsAdminMenu'
 import { MusbandsAdminFrontPage } from './components/body/MusbandsAdminFrontPage'
+import { MusbandsAdminFunctionMemberFrontPage } from './components/body/MusbandsAdminFunctionMemberFrontPage'
 
-export class App extends React.Component {
+export class App extends Component {
   render(): JSX.Element {
     return (
       <div className="App">
@@ -14,7 +15,7 @@ export class App extends React.Component {
         </header>
         <hr />
         <MusbandsAdminMenu />
-        <MusbandsAdminFrontPage />
+        <MusbandsAdminFunctionMemberFrontPage />
       </div>
     )
   }
