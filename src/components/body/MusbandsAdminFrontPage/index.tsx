@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component, ReactNode } from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 
@@ -6,8 +6,8 @@ import { createBrowserHistory } from 'history'
 const history = createBrowserHistory()
 
 // Functional component for header app.
-export class MusbandsAdminFrontPage extends React.Component<{}, {}> {
-  render(): React.ReactNode {
+export class MusbandsAdminFrontPage extends Component<{}, {}> {
+  render(): ReactNode {
     return (
       <Router history={history}>
         <Switch>
