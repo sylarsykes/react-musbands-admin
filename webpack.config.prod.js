@@ -27,6 +27,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ya?ml$/,
+        use: 'js-yaml-loader',
+      },
+      {
         test: /\.css$/,
         exclude: /node_modules/,
         use: [

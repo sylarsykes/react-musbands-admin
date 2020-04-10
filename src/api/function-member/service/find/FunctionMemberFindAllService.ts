@@ -1,25 +1,12 @@
-import { useEffect, useState } from 'react'
-
-import { Service } from '../../../common/utils/types/Service'
 import { FunctionMemberModel } from '../../model/FunctionMemberModel'
 
-export interface FunctionMemberFindAllServiceResults {
-    results: FunctionMemberModel[];
-}
+import { Service } from '../../../common/utils/types/Service'
+import { FetchGetRequest } from '../../../common/utils/Fetch'
+import baseFindAllService, { FindAllServiceResult } from '../../../common/service/find/BaseFindAllService'
 
-const functionMemberFindAllService = (): Service<FunctionMemberFindAllServiceResults> => {
-  const [result, setResult] = useState<Service<FunctionMemberFindAllServiceResults>>({
-    status: 'loading'
-  })
-
-  useEffect(() => {
-    fetch('http://localhost:8085/api/admin/1.0/functionMembers', {
-      method: 'get',
-    })
-      .then((response) => response.json())
-      .then((response) => setResult({ status: 'loaded', payload: { results: response} }))
-      .catch((error) => setResult({ status: 'error', error }))
-  }, [])
+const functionMemberFindAllService = (): Service<FindAllServiceResult<Array<FunctionMemberModel>>> => {
+  const requestInfo = new FetchGetRequest('http://localhost:8085/api/admin/1.0/functionMembers', { method: 'pepito' })
+  const result = baseFindAllService<Array<FunctionMemberModel>>(requestInfo)
 
   return result
 }

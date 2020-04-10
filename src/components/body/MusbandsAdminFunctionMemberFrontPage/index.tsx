@@ -1,7 +1,6 @@
 import React, { FC, Component, ReactNode } from 'react'
 import { Router, Route, Switch } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
-import { encode } from 'base-64'
 
 import functionMemberFindAllService from '../../../api/function-member/service/find/FunctionMemberFindAllService'
 
@@ -10,16 +9,18 @@ const history = createBrowserHistory()
 
 const MusbandsAdminFunctionMemberFindAllComponent: FC<{}> = () => {
   const service = functionMemberFindAllService()
+  let results = null
+
+  if (service.status === 'loaded' && service.payload && service.payload.results) {
+    results = service.payload.results
+  }
 
   return (
     <div>
       {service.status === 'loading' && <div>Loading...</div>}
-      {service.status === 'loaded' && service.payload && service.payload.results &&
-        service.payload.results.map((functionMember:any) => (
-          <div key={functionMember.id}>
-            {functionMember.name}
-          </div>
-        ))}
+      {results && results.map((functionMember: any) => (
+        <div key={functionMember.id}>{functionMember.name}</div>
+      ))}
       {service.status === 'error' && (
         <div>Error, the backend moved to the dark side.</div>
       )}

@@ -22,10 +22,21 @@ module.exports = {
     port: 3000,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx', '.yml', '.yaml']
   },
   module: {
     rules: [
+      {
+        test: /\.ya?ml$/,
+        use: [
+          {
+            loader: 'js-yaml-loader',
+            options: {
+              safe: false
+            }
+          }
+        ],
+      },
       {
         test: /\.css$/,
         exclude: /node_modules/,
