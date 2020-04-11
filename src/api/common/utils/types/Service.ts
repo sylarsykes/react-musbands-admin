@@ -16,6 +16,9 @@ interface ServiceError {
   error: Error;
 }
 
+/**
+ * Service states
+ */
 export type Service<T> =
   | ServiceInit
   | ServiceLoading

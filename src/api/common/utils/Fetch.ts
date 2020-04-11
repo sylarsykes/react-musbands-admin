@@ -1,3 +1,5 @@
+import { BaseModel } from '../model/BaseModel'
+
 /**
  * Generics http response
  */
@@ -28,10 +30,12 @@ export class FetchGetRequest {
   }
 }
 
-export class FetchPostRequest {
+/**
+ * RequestInit object for post method
+ */
+export class FetchPostRequest<T extends BaseModel> {
   path: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  body: any
+  body: T
   args: RequestInit = { method: 'post', body: JSON.stringify(this.body) }
 
   /**
@@ -45,7 +49,7 @@ export class FetchPostRequest {
    *    Request init object
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(path: string, postBody: any, args?: RequestInit) {
+  constructor(path: string, postBody: T, args?: RequestInit) {
     this.path = path
     this.body = postBody
 
@@ -55,10 +59,12 @@ export class FetchPostRequest {
   }
 }
 
-export class FetchPutRequest {
+/**
+ * RequestInit object for put method
+ */
+export class FetchPutRequest<T extends BaseModel> {
   path: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  body: any
+  body: T
   args: RequestInit = { method: 'put', body: JSON.stringify(this.body) }
 
   /**
@@ -72,7 +78,7 @@ export class FetchPutRequest {
    *    Request init object
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(path: string, putBody: any, args?: RequestInit) {
+  constructor(path: string, putBody: T, args?: RequestInit) {
     this.path = path
     this.body = putBody
 
@@ -108,7 +114,7 @@ export class Fetch<T> {
   }
 
   /**
-   * Fetch model GET
+   * Fetch method GET
    *
    * @param request
    */
@@ -117,20 +123,20 @@ export class Fetch<T> {
   }
 
   /**
-   * Fetch model POST
+   * Fetch method POST
    *
    * @param request
    */
-  async post<T>(request: FetchPostRequest): Promise<HttpResponse<T>> {
+  async post<T extends BaseModel>(request: FetchPostRequest<T>): Promise<HttpResponse<T>> {
     return await this.http<T>(new Request(request.path, request.args))
   }
 
   /**
-   * Fetch model PUT
+   * Fetch method PUT
    *
    * @param request
    */
-  async put<T>(request: FetchPutRequest): Promise<HttpResponse<T>> {
+  async put<T extends BaseModel>(request: FetchPutRequest<T>): Promise<HttpResponse<T>> {
     return await this.http<T>(new Request(request.path, request.args))
   }
 }

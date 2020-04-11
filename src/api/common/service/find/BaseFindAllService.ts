@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { BaseModel } from '../../model/BaseModel'
 import { Service } from '../../utils/types/Service'
 import { Fetch, HttpResponse, FetchGetRequest } from '../../../common/utils/Fetch'
+import { BaseModelCollection } from '../../collection/BaseModelCollection';
 
 /**
  * Generics result of find all service
@@ -28,7 +29,7 @@ export class FindAllServiceResult<T extends Array<BaseModel>> {
  * @returns Service<FindAllServiceResult<V>>
  *    Return a service object with property result an object of type FindAllServiceResult<V> with result
  */
-const baseFindAllService = <V extends Array<BaseModel>>(request: FetchGetRequest): Service<FindAllServiceResult<V>> => {
+const baseFindAllService = <V extends BaseModelCollection<BaseModel>>(request: FetchGetRequest): Service<FindAllServiceResult<V>> => {
   const [result, setResult] = useState<Service<FindAllServiceResult<V>>>({
     status: 'loading'
   })
