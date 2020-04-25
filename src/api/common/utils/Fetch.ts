@@ -24,9 +24,13 @@ export class FetchGetRequest {
    */
   constructor(path: string, args?: RequestInit) {
     this.path = path
-    // Exclude property method
-    const { method, ...requestInitArgs } = args
-    this.args = requestInitArgs
+
+    if (args) {
+      // Exclude property method
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { method, ...requestInitArgs } = args
+      this.args = requestInitArgs
+    }
   }
 }
 
@@ -36,7 +40,11 @@ export class FetchGetRequest {
 export class FetchPostRequest<T extends BaseModel> {
   path: string
   body: T
-  args: RequestInit = { method: 'post', body: JSON.stringify(this.body) }
+  args: RequestInit = {
+    method: 'post',
+    body: JSON.stringify(this.body),
+    headers: { 'Content-Type': 'application/json' }
+  }
 
   /**
    * Default constructor
@@ -53,9 +61,23 @@ export class FetchPostRequest<T extends BaseModel> {
     this.path = path
     this.body = postBody
 
-    // Exclude method and body value
-    const { method, body, ...requestInitArgs } = args
-    this.args = requestInitArgs
+    if (args) {
+      // Exclude method and body value
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { method, body, ...requestInitArgs } = args
+      this.args = requestInitArgs
+    } else {
+
+      try {
+        this.args = {
+          method: 'post',
+          body: JSON.stringify(this.body),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      } catch (error) {
+        throw new Error(error)
+      }
+    }
   }
 }
 
@@ -65,7 +87,11 @@ export class FetchPostRequest<T extends BaseModel> {
 export class FetchPutRequest<T extends BaseModel> {
   path: string
   body: T
-  args: RequestInit = { method: 'put', body: JSON.stringify(this.body) }
+  args: RequestInit = {
+    method: 'put',
+    body: JSON.stringify(this.body),
+    headers: { 'Content-Type': 'application/json' }
+  }
 
   /**
    * Default constructor
@@ -82,9 +108,18 @@ export class FetchPutRequest<T extends BaseModel> {
     this.path = path
     this.body = putBody
 
-    // Exclude method and body value
-    const { method, body, ...requestInitArgs } = args
-    this.args = requestInitArgs
+    if (args) {
+      // Exclude method and body value
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { method, body, ...requestInitArgs } = args
+      this.args = requestInitArgs
+    } else {
+      this.args = {
+        method: 'put',
+        body: JSON.stringify(this.body),
+        headers: { 'Content-Type': 'application/json' }
+      }
+    }
   }
 }
 
@@ -98,15 +133,16 @@ export class Fetch<T> {
    * @param request
    */
   async http<T>(request: RequestInfo): Promise<HttpResponse<T>> {
-    const response: HttpResponse<T> = await fetch(request)
+    let response: HttpResponse<T> = null
 
     try {
+      response = await fetch(request)
       response.result = await response.json()
     } catch (error) {
       throw new Error(error)
     }
 
-    if (!response.ok) {
+    if (response && !response.ok) {
       throw new Error(response.statusText)
     }
 

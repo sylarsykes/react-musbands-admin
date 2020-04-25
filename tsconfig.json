@@ -1,11 +1,27 @@
 // see https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html
+// see https://www.typescriptlang.org/docs/handbook/compiler-options.html
 {
   "compilerOptions": {
     "outDir": "./dist/",
-    "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    /*
+      Enable annotations
+    */
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
     "target": "es5",
+    "typeRoots": [
+      "../node_modules/@types"
+    ],
     "jsx": "react",
     /*
        Enables emit interoperability between CommonJS and ES Modules
@@ -23,9 +39,16 @@
     "skipLibCheck" : true
   },
   "include" : [
-      "./src/**/*"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude" : [
-      "./test/**/*"
-  ]
+    "node_modules",
+    "src/**/*.spec.ts",
+    "src/**/__tests__/*.ts"
+  ],
+  "compileOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }
