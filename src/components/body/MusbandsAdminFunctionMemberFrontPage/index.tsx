@@ -11,8 +11,8 @@ const MusbandsAdminFunctionMemberFindAllComponent: FC<{}> = () => {
   const service = functionMemberFindAllService()
   let results = null
 
-  if (service.status === 'loaded' && service.payload && service.payload.results) {
-    results = service.payload.results
+  if (service.status === 'loaded' && service.payload) {
+    results = service.payload
   }
 
   return (
