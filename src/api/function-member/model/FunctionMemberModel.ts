@@ -1,39 +1,33 @@
 import { BaseAdminModel, BaseBuilder } from '../../common/model/BaseModel'
-import { validate, validateOrReject, IsNotEmpty, IsString, IsDate, MaxLength, ValidationError } from 'class-validator'
-//import { identifier, primitive, date, serializable } from 'serializr'
-//import { DateTime } from 'luxon'
+import { validate, validateOrReject, IsNumber, IsNotEmpty, IsString, IsDate, MinLength, MaxLength, ValidationError } from 'class-validator'
 
 /**
  * Model function member
  */
 export class FunctionMemberModel implements BaseAdminModel {
-  //  @serializable(identifier())
+    @IsNumber()
     id?: number = null;
 
     @IsString()
     @IsNotEmpty({ message: 'The property $property is empty.' })
+    @MinLength(1, { message: 'The property $propety is too short. Minimal length is $constraint1 characters, but actual is $value' })
     @MaxLength(256, { message: 'The property $propety is too long. Maximal length is $constraint1 characters, but actual is $value' })
-    //@serializable(primitive())
     name: string;
 
     @MaxLength(10000, { message: 'The property $propety is too long. Maximal length is $constraint1 characters, but actual is $value' })
-    //@serializable(primitive())
     description?: string;
 
     @IsNotEmpty({ message: 'The property $property is empty.' })
-    //@serializable(primitive())
     createdBy: string;
 
     @IsNotEmpty({ message: 'The property $property is empty.' })
     @IsDate({ message: 'The property $property is a datetime'})
-    //@serializable(date())
     createdDate: Date;
 
-    //@serializable(primitive())
+    @IsString()
     lastModifiedBy?: string;
 
     @IsDate({ message: 'The property $property is a datetime'})
-   // @serializable(date())
     lastModifiedDate?: Date;
 
     /**
@@ -268,6 +262,7 @@ export class FunctionMemberModelBuilder implements BaseBuilder<FunctionMemberMod
 
     /**
      * @inheritdoc
+     *
      * @override
      */
     build(): FunctionMemberModel {

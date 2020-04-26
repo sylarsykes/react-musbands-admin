@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 import { BaseModel } from '../../model/BaseModel'
 import { Service } from '../../utils/types/Service'
 import { Fetch, HttpResponse, FetchGetRequest } from '../../../common/utils/Fetch'
-import { BaseModelCollection } from '../../collection/BaseModelCollection'
 
 /**
  * Default implementation of find all service
  *
  * @param V
- *    List of objects BaseModel type
+ *    Objects BaseModel type
  *
- * @returns Service<BaseModelCollection<V>>
- *    Return a service object with property result an object of type BaseModelCollection<V> with result
+ * @returns Service<BaseModel>
+ *    Return a service object with property result an object of type BaseModel with result
  */
-const baseFindAllService = <V extends BaseModelCollection<BaseModel>>(request: FetchGetRequest): Service<V> => {
+const baseFindByIdService = <V extends BaseModel> (request: FetchGetRequest): Service<V> => {
+
   const [result, setResult] = useState<Service<V>>({
     status: 'loading'
   })
@@ -42,4 +42,4 @@ const baseFindAllService = <V extends BaseModelCollection<BaseModel>>(request: F
   return result
 }
 
-export default baseFindAllService
+export default baseFindByIdService
